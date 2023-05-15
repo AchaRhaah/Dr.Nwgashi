@@ -1,26 +1,64 @@
 import React from "react";
 import styles from "./TableHeader.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faAngleUp,
+  faAngleDown,
+  faBarsFilter,
+} from "@fortawesome/free-solid-svg-icons";
 
 function Table() {
   return (
-    <div>
+    <div className={styles.tableContainer}>
       <ul className={styles.table}>
-        <li className={styles.table_header}>
-          <div className={`${styles.tableHeaderText} ${styles.col_1}`}>
-            Name
+        <li className={styles.tableHeader}>
+          <div className={`${styles.tableHeaderContainer} ${styles.col_1}`}>
+            <p className={styles.tableHeaderText}>Name</p>
+            <div className={styles.iconContainer}>
+              <FontAwesomeIcon className={styles.icon} icon={faAngleUp} />
+              <FontAwesomeIcon className={styles.icon} icon={faAngleDown} />
+            </div>
           </div>
-          <div className={`${styles.col_2} ${styles.tableHeaderText}`}>
-            Code
+          <div className={`${styles.col_2} ${styles.tableHeaderContainer}`}>
+            <p className={styles.tableHeaderText}>Code</p>
+            <div className={styles.iconContainer}>
+              <FontAwesomeIcon className={styles.icon} icon={faAngleUp} />
+              <FontAwesomeIcon className={styles.icon} icon={faAngleDown} />
+            </div>
           </div>
-          <div className={`${styles.col_3} ${styles.tableHeaderText}`}>Age</div>
-          <div className={`${styles.col_4} ${styles.tableHeaderText}`}>
-            Address
+          <div className={`${styles.col_3} ${styles.tableHeaderContainer}`}>
+            <p className={styles.tableHeaderText}>Age</p>
+            <div className={styles.iconWrapper}>
+              <div className={styles.iconContainer}>
+                <FontAwesomeIcon className={styles.icon} icon={faAngleUp} />
+                <FontAwesomeIcon className={styles.icon} icon={faAngleDown} />
+              </div>
+            </div>
+            <div className={styles.iconContainer}>
+              <FontAwesomeIcon className={styles.icon} icon={faAngleUp} />
+              <FontAwesomeIcon className={styles.icon} icon={faAngleDown} />
+            </div>
           </div>
-          <div className={`${styles.col_5} ${styles.tableHeaderText}`}>
-            Phone
+          <div className={`${styles.col_4} ${styles.tableHeaderContainer}`}>
+            <p className={styles.tableHeaderText}>Address</p>
+            <div className={styles.iconContainer}>
+              <FontAwesomeIcon className={styles.icon} icon={faAngleUp} />
+              <FontAwesomeIcon className={styles.icon} icon={faAngleDown} />
+            </div>
           </div>
-          <div className={`${styles.col_6} ${styles.tableHeaderText}`}>
-            Status
+          <div className={`${styles.col_5} ${styles.tableHeaderContainer}`}>
+            <p className={styles.tableHeaderText}>Phone</p>
+            <div className={styles.iconContainer}>
+              <FontAwesomeIcon className={styles.icon} icon={faAngleUp} />
+              <FontAwesomeIcon className={styles.icon} icon={faAngleDown} />
+            </div>
+          </div>
+          <div className={`${styles.col_6} ${styles.tableHeaderContainer}`}>
+            <p className={styles.tableHeaderText}>Status</p>
+            <div className={styles.iconContainer}>
+              <FontAwesomeIcon className={styles.icon} icon={faAngleUp} />
+              <FontAwesomeIcon className={styles.icon} icon={faAngleDown} />
+            </div>
           </div>
         </li>
         <li className={styles.table_row}>

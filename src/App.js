@@ -1,11 +1,20 @@
 import "./App.css";
-import { Navbar, StatusBox, Status, Table } from "../src/components/index";
+import { Navbar } from "./components";
+import { HomePage, RecordPage } from "./pages";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      {/* hi */}
-      <Table />
+      <Navbar />
+      <HomePage />
+      {/* <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />}>
+            <Route index element={<RecordPage />} />
+          </Route>
+        </Routes>
+      </BrowserRouter> */}
     </div>
   );
 }

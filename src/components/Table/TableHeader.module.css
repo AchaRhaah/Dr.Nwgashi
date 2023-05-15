@@ -1,8 +1,13 @@
-.table {
+.tableContainer {
     width: 80%;
+    margin: 0 auto;
 }
 
-.table_header {
+.table {
+    width: 100%;
+}
+
+.tableHeader {
     border-radius: 3px;
     padding: 1rem 0 1rem 0;
     display: flex;
@@ -15,12 +20,38 @@
     font-weight: 700;
     background: #fff;
     height: 3rem;
+    display: flex;
+    align-items: center;
+
+}
+
+.iconContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: -1px;
+}
+
+.tableHeaderContainer {
+    background: #fff;
+    height: 3rem;
     border-radius: 0.6rem;
     display: flex;
     text-align: start;
     align-items: center;
+    justify-content: space-between;
     padding-left: 0.75em;
+    padding-right: 0.9em;
+}
 
+.icon{
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+.filterIcon{
+    font-size: 1rem;
 }
 
 .table_row {
@@ -40,7 +71,7 @@
 .col {
     display: flex;
     align-items: flex-start;
-    margin-left: 0.8rem;
+    margin-left: 1.4rem;
     /* border: 1px solid; */
     /* justify-content: center; */
 }
