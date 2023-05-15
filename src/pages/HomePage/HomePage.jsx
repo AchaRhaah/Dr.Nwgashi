@@ -1,8 +1,8 @@
 import React from "react";
-import { Navbar, StatusBox, Status, Table } from "../../components";
+import { StatusBox, Table } from "../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 import styles from "./HomePage.module.css";
 
@@ -17,7 +17,10 @@ function HomePage() {
         </div>
         <div className={styles.inputWrapper}>
           <input className={styles.search} placeholder="Search" type="text" />
-          <FontAwesomeIcon className={styles.searchIcon} icon={faMagnifyingGlass} />
+          <FontAwesomeIcon
+            className={styles.searchIcon}
+            icon={faMagnifyingGlass}
+          />
         </div>
       </div>
       <div className={styles.status}>
@@ -44,7 +47,11 @@ function HomePage() {
       <div className={styles.bottomContainer}>
         <div></div>
         <div className={styles.paginator}>asdfasdfasfafafadfasfas</div>
-        <div className={styles.plus}>+</div>
+        <div className={styles.plus}>
+          <Link className={styles.plus} to="/records">
+            +
+          </Link>
+        </div>
       </div>
     </div>
   );

@@ -28,8 +28,8 @@
     padding-right: 0.5rem;
 }
 
-.inputWrapper:hover{
-    outline: 2px;
+.inputWrapper:focus {
+    outline: 2px solid;
 }
 
 .container1 {
@@ -83,7 +83,7 @@ input:focus {
 
 .plus {
     font-weight: 700;
-    font-size: 2em;
+    font-size: 1.2em;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -92,4 +92,5 @@ input:focus {
     height: 3rem;
     border-radius: 0.75rem;
     background: #BE6370;
+    text-decoration: none;
 }

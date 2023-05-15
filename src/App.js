@@ -7,14 +7,13 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <HomePage />
-      {/* <BrowserRouter>
+      <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomePage />}>
-            <Route index element={<RecordPage />} />
-          </Route>
+          <Route path="/" exact element={<HomePage />} />
+          <Route path="/records" element={<RecordPage /> } />
+      
         </Routes>
-      </BrowserRouter> */}
+      </BrowserRouter>
     </div>
   );
 }

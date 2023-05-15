@@ -1,0 +1,121 @@
+.pageContainer {
+    width: 100%;
+    height: 100%;
+}
+
+.topContainer {
+    width: 85%;
+    height: 5rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    /* background: red; */
+}
+
+.navLine {
+    width: 10%;
+    height: 0.2rem;
+    background: #B78388;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+.container {
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.calendar {
+    width: 10rem;
+    height: 2rem;
+    border: none;
+    display: flex;
+    border-radius: 0.3rem;
+    align-items: center;
+    background: #fff;
+    padding-left: 0.2rem;
+}
+
+.dateCalendar {
+    width: 8rem;
+    height: 2rem;
+    border: none;
+}
+
+.row {
+    width: 90%;
+    height: 4.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.row2 {
+    width: 90%;
+    height: 4.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.row3 {
+    width: 60%;
+    height: 4.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.row4 {
+    width: 70%;
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.divider {
+    margin: 2.5rem 0 1.5rem auto;
+    width: 100%;
+}
+
+.heading {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+
+.icon{
+    text-decoration: none;
+    color: #000
+}
+
+.saveBtn {
+    width: 4rem;
+    height: 2rem;
+    background: #B78388;
+    border-radius: 0.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    align-self: flex-end;
+}
+
+.save {
+    color: #fff;
+    font-weight: 600;
+}

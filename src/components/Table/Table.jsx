@@ -28,12 +28,7 @@ function Table() {
           </div>
           <div className={`${styles.col_3} ${styles.tableHeaderContainer}`}>
             <p className={styles.tableHeaderText}>Age</p>
-            <div className={styles.iconWrapper}>
-              <div className={styles.iconContainer}>
-                <FontAwesomeIcon className={styles.icon} icon={faAngleUp} />
-                <FontAwesomeIcon className={styles.icon} icon={faAngleDown} />
-              </div>
-            </div>
+          
             <div className={styles.iconContainer}>
               <FontAwesomeIcon className={styles.icon} icon={faAngleUp} />
               <FontAwesomeIcon className={styles.icon} icon={faAngleDown} />

@@ -1,0 +1,22 @@
+import React, {useState} from "react";
+import styles from "./Input.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft, faCalendar } from "@fortawesome/free-solid-svg-icons";
+import DatePicker from "react-datepicker";
+
+function Calendar({ label, width }) {
+  const [startDate, setStartDate] = useState(new Date());
+  return (
+    <div className={styles.inputContainer}>
+      <label className={styles.label} htmlFor="">
+        {label}
+      </label>
+      <div className={styles.calendar}>
+        <FontAwesomeIcon icon={faCalendar} />
+        <DatePicker className={styles.dateCalendar} selected={startDate} />
+      </div>
+    </div>
+  );
+}
+
+export default Calendar;
