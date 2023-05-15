@@ -1,0 +1,14 @@
+.container {
+    height: 1.5rem;
+    max-width: 7rem;
+    border-radius: 0.4rem;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    padding: 0 6px 0 6px;
+}
+
+.text {
+    font-size: 0.75rem;
+    font-weight: 500;
+}
