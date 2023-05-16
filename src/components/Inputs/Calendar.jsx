@@ -4,8 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faCalendar } from "@fortawesome/free-solid-svg-icons";
 import DatePicker from "react-datepicker";
 
-function Calendar({ label, width }) {
+function Calendar({ label, getDate }) {
   const [startDate, setStartDate] = useState(new Date());
+  const handleDatePicked = (date) => {
+    setStartDate(date)
+    getDate(date)
+  }
   return (
     <div className={styles.inputContainer}>
       <label className={styles.label} htmlFor="">
@@ -13,7 +17,11 @@ function Calendar({ label, width }) {
       </label>
       <div className={styles.calendar}>
         <FontAwesomeIcon icon={faCalendar} />
-        <DatePicker className={styles.dateCalendar} selected={startDate} />
+        <DatePicker
+          className={styles.dateCalendar}
+          selected={startDate}
+          onChange={(date) => handleDatePicked(date)}
+        />
       </div>
     </div>
   );

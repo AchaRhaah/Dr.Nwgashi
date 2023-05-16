@@ -1,19 +1,29 @@
 import React, { useState } from "react";
 import styles from "./RecordsPage.module.css";
 import { Link } from "react-router-dom";
-import { InputNoIcon, BigInput, Dropdown, Calendar } from "../../components";
+import { InputNoIcon, BigInput, Dropdown, Calendar, Time } from "../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 function RecordPage() {
   const gender = ["Male", "Female"];
   const status = ["Pending", "Rescheduled", "Passed"];
-  const firstTime = ["Yes", "No"];
+  const firstTimeOption = ["Yes", "No"];
   const [time, setTime] = useState("10:00");
-
-  const onTimeChange = (newTime) => {
-    setTime(newTime);
-  };
+  const [uniqueCode, setUniqueCode] = useState(0);
+  const [name, setName] = useState("");
+  const [sex, setSex] = useState("");
+  const [phone, setPhone] = useState(0);
+  const [email, setEmail] = useState("");
+  const [apptDate, setApptDate] = useState(0);
+  const [firstTime, setFirstTime] = useState("No");
+  const [reqDate, setReqDate] = useState(0);
+  const [apptStatus, setApptStatus] = useState("pending");
+  const [apptTime, setApptTime] = useState("00:00");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [beforeAppt, setBeforeAppt] = useState("");
+  const [afterAppt, setAfterAppt] = useState("");
 
   return (
     <div className={styles.pageContainer}>
@@ -27,29 +37,79 @@ function RecordPage() {
       <div className={styles.container}>
         <h3 className={styles.heading}>General Information</h3>
         <div className={styles.row}>
-          <InputNoIcon width={"7"} label={"Unique Code"} />
-          <InputNoIcon label={"Name"} />
-          <Dropdown label={"Sex"} data={gender} />
-          <InputNoIcon label={"Phone"} />
-          <InputNoIcon label={"Email"} />
+          <InputNoIcon
+            width={"7"}
+            label={"Unique Code"}
+            name={"uniqueCode"}
+            getValue={setUniqueCode}
+          />
+          {console.log("status", apptStatus)}
+          <InputNoIcon label={"Name"} name={"name"} getValue={setName} />
+          <Dropdown
+            label={"Sex"}
+            data={gender}
+            name={"sex"}
+            getValue={setSex}
+          />
+          <InputNoIcon label={"Phone"} name={"phone"} getValue={setPhone} />
+          <InputNoIcon label={"Email"} name={"email"} getValue={setEmail} />
         </div>
         <hr className={styles.divider} />
         <h3 className={styles.heading}>Appointment Information</h3>
         <div className={styles.row2}>
-          <Calendar label={"Appointment date"} />
-          <Dropdown label={"First time"} data={firstTime} />
-          <Calendar label={"Request date"} />
-          <Dropdown label={"Appointment Status"} data={status} />
+          <Calendar
+            label={"Appointment date"}
+            name={"apptDate"}
+            getDate={setAfterAppt}
+          />
+          <Dropdown
+            label={"First time"}
+            data={firstTimeOption}
+            name={"firstTime"}
+            getValue={setFirstTime}
+          />
+          <Calendar
+            label={"Request date"}
+            name={"reqDate"}
+            getDate={setReqDate}
+          />
+          <Dropdown
+            label={"Appointment Status"}
+            data={status}
+            name={"apptStatus"}
+            getValue={setApptStatus}
+          />
+          <Time label={'Appointment page'} getTime={setTime}/>
         </div>
         <h3 className={styles.heading}>Address Information</h3>
         <div className={styles.row3}>
-          <InputNoIcon width={"12"} label={"Address 1"} />
-          <InputNoIcon width={"14"} label={"City"} />
+          <InputNoIcon
+            width={"12"}
+            label={"Address 1"}
+            name={"addr"}
+            getValue={setAddress}
+          />
+          <InputNoIcon
+            width={"14"}
+            label={"City"}
+            name={"city"}
+            getValue={setCity}
+          />
         </div>
         <h3 className={styles.heading}>Notes</h3>
         <div className={styles.row4}>
-          <BigInput label={"Before appointment"} width={"18"} />
-          <BigInput label={"After appointment"} width={"18"} />
+          <BigInput
+            label={"Before appointment"}
+            width={"18"}
+            name={"beforeAppt"}
+            getValue={setBeforeAppt}
+          />
+          <BigInput
+            label={"After appointment"}
+            width={"18"}
+            name={"afterAppt"}
+            getValue={setAfterAppt}
+          />
         </div>
         <div className={styles.saveBtn}>
           <p className={styles.save}>Save</p>
