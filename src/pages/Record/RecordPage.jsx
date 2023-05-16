@@ -25,6 +25,31 @@ function RecordPage() {
   const [beforeAppt, setBeforeAppt] = useState("");
   const [afterAppt, setAfterAppt] = useState("");
 
+  const addAppointment = async () => {
+    const data = await fetch("http://localhost:3001/record", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        uniqueCode,
+        name,
+        sex,
+        phone,
+        email,
+        apptDate,
+        firstTime,
+        reqDate,
+        apptStatus,
+        apptTime,
+        address,
+        city,
+        beforeAppt,
+        afterAppt,
+      }),
+    }).then((res) => res.json());
+    console.log(data);
+  };
   return (
     <div className={styles.pageContainer}>
       <div className={styles.topContainer}>
@@ -60,7 +85,7 @@ function RecordPage() {
           <Calendar
             label={"Appointment date"}
             name={"apptDate"}
-            getDate={setAfterAppt}
+            getDate={setApptDate}
           />
           <Dropdown
             label={"First time"}
@@ -79,7 +104,7 @@ function RecordPage() {
             name={"apptStatus"}
             getValue={setApptStatus}
           />
-          <Time label={'Appointment page'} getTime={setTime}/>
+          <Time label={"Appointment page"} getTime={setTime} />
         </div>
         <h3 className={styles.heading}>Address Information</h3>
         <div className={styles.row3}>
@@ -111,7 +136,7 @@ function RecordPage() {
             getValue={setAfterAppt}
           />
         </div>
-        <div className={styles.saveBtn}>
+        <div className={styles.saveBtn} onClick={addAppointment}>
           <p className={styles.save}>Save</p>
         </div>
       </div>

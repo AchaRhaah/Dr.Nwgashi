@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StatusBox, Table } from "../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
@@ -7,6 +7,18 @@ import { Link } from "react-router-dom";
 import styles from "./HomePage.module.css";
 
 function HomePage() {
+  const [appt, setAppt] = useState([])
+
+  useEffect(() => {
+    GetAppointments();
+  }, [])
+
+  const GetAppointments = () => {
+    fetch("http://localhost:3001/")
+      .then((res) => res.json())
+      .then((data) => setAppt(data)).catch(e => console.error("Error",e));
+  };
+  console.log(appt)
   return (
     <div className={styles.homePage}>
       <div className={styles.container1}>
@@ -43,7 +55,7 @@ function HomePage() {
           amount={5}
         />
       </div>
-      <Table />
+      <Table tableData={appt} />
       <div className={styles.bottomContainer}>
         <div></div>
         <div className={styles.paginator}>asdfasdfasfafafadfasfas</div>

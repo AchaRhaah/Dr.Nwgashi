@@ -7,7 +7,7 @@ import {
   faBarsFilter,
 } from "@fortawesome/free-solid-svg-icons";
 
-function Table() {
+function Table({tableData}) {
   return (
     <div className={styles.tableContainer}>
       <ul className={styles.table}>
@@ -56,24 +56,34 @@ function Table() {
             </div>
           </div>
         </li>
-        <li className={styles.table_row}>
-          <div className={`${styles.col} ${styles.col_1}`}>Name</div>
-          <div className={`${styles.col} ${styles.col_2}`}>Code</div>
-          <div className={`${styles.col} ${styles.col_3}`}>Age</div>
-          <div className={`${styles.col} ${styles.col_4}`}>
-            8245 Spaight Park
-          </div>
-          <div className={`${styles.col} ${styles.col_5}`}>Phone</div>
-          <div className={`${styles.col} ${styles.col_6}`}>Status</div>
-        </li>
-        <li className={styles.table_row}>
-          <div className={`${styles.col} ${styles.col_1}`}>Name</div>
-          <div className={`${styles.col} ${styles.col_2}`}>Code</div>
-          <div className={`${styles.col} ${styles.col_3}`}>Age</div>
-          <div className={`${styles.col} ${styles.col_4}`}>Address</div>
-          <div className={`${styles.col} ${styles.col_5}`}>Phone</div>
-          <div className={`${styles.col} ${styles.col_6}`}>Status</div>
-        </li>
+        {
+          tableData.map((data, index) => {
+            return (
+              <li key={index} className={styles.table_row}>
+                <div className={`${styles.col} ${styles.col_1}`}>
+                  {data.name}
+                </div>
+                <div className={`${styles.col} ${styles.col_2}`}>
+                  {data.uniqueCode}
+                </div>
+                <div className={`${styles.col} ${styles.col_3}`}>
+                  {data.age}
+                </div>
+                <div className={`${styles.col} ${styles.col_4}`}>
+                  {data.address}
+                </div>
+                <div className={`${styles.col} ${styles.col_5}`}>
+                  {data.phone}
+                </div>
+                <div className={`${styles.col} ${styles.col_6}`}>
+                  {data.apptStatus}
+                </div>
+              </li>
+            );
+          })
+        }
+        
+       
       </ul>
     </div>
   );
