@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./RecordsPage.module.css";
 import { Link } from "react-router-dom";
-import { InputNoIcon, BigInput, Dropdown, Calendar, Time } from "../../components";
+import { Input, BigInput, Dropdown, Calendar, Time } from "../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
@@ -10,6 +10,7 @@ function RecordPage() {
   const status = ["Pending", "Rescheduled", "Passed"];
   const firstTimeOption = ["Yes", "No"];
   const [time, setTime] = useState("10:00");
+  const [age, setAge] = useState(0);
   const [uniqueCode, setUniqueCode] = useState(0);
   const [name, setName] = useState("");
   const [sex, setSex] = useState("");
@@ -26,30 +27,48 @@ function RecordPage() {
   const [afterAppt, setAfterAppt] = useState("");
 
   const addAppointment = async () => {
-    const data = await fetch("http://localhost:3001/record", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        uniqueCode,
-        name,
-        sex,
-        phone,
-        email,
-        apptDate,
-        firstTime,
-        reqDate,
-        apptStatus,
-        apptTime,
-        address,
-        city,
-        beforeAppt,
-        afterAppt,
-      }),
-    }).then((res) => res.json());
-    console.log(data);
+    try {
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          uniqueCode: uniqueCode,
+          name: name,
+          age: age,
+          sex: sex,
+          phone: phone,
+          email: email,
+          apptDate: apptDate,
+          firstTime: firstTime,
+          reqDate: reqDate,
+          apptStatus: apptStatus,
+          apptTime: apptTime,
+          address: address,
+          city: city,
+          beforeAppt: beforeAppt,
+          afterAppt: afterAppt,
+        }),
+      };
+      const response = await fetch(
+        "http://localhost:3001/record",
+        requestOptions
+      );
+      if (response.ok) {
+        // handle successful save
+        console.log("Appointment saved successfully");
+      } else {
+        // handle error response
+        const error = await response.json();
+        console.log("error", error);
+        throw new Error(error.message);
+      }
+    } catch (error) {
+      // handle network errors and other exceptions
+      console.error("Error saving appointment:", error.message);
+      // display error message on the front end or handle it in some other way
+    }
   };
+
   return (
     <div className={styles.pageContainer}>
       <div className={styles.topContainer}>
@@ -62,22 +81,22 @@ function RecordPage() {
       <div className={styles.container}>
         <h3 className={styles.heading}>General Information</h3>
         <div className={styles.row}>
-          <InputNoIcon
+          <Input
             width={"7"}
             label={"Unique Code"}
             name={"uniqueCode"}
             getValue={setUniqueCode}
           />
           {console.log("status", apptStatus)}
-          <InputNoIcon label={"Name"} name={"name"} getValue={setName} />
+          <Input label={"Name"} name={"name"} getValue={setName} />
           <Dropdown
             label={"Sex"}
             data={gender}
             name={"sex"}
             getValue={setSex}
           />
-          <InputNoIcon label={"Phone"} name={"phone"} getValue={setPhone} />
-          <InputNoIcon label={"Email"} name={"email"} getValue={setEmail} />
+          <Input label={"Phone"} name={"phone"} getValue={setPhone} />
+          <Input label={"Email"} name={"email"} getValue={setEmail} />
         </div>
         <hr className={styles.divider} />
         <h3 className={styles.heading}>Appointment Information</h3>
@@ -85,7 +104,7 @@ function RecordPage() {
           <Calendar
             label={"Appointment date"}
             name={"apptDate"}
-            getDate={setApptDate}
+            getDate={setAfterAppt}
           />
           <Dropdown
             label={"First time"}
@@ -104,22 +123,17 @@ function RecordPage() {
             name={"apptStatus"}
             getValue={setApptStatus}
           />
-          <Time label={"Appointment page"} getTime={setTime} />
+          <Input label={"age"} getValue={setAge} />
         </div>
         <h3 className={styles.heading}>Address Information</h3>
         <div className={styles.row3}>
-          <InputNoIcon
+          <Input
             width={"12"}
             label={"Address 1"}
             name={"addr"}
             getValue={setAddress}
           />
-          <InputNoIcon
-            width={"14"}
-            label={"City"}
-            name={"city"}
-            getValue={setCity}
-          />
+          <Input width={"14"} label={"City"} name={"city"} getValue={setCity} />
         </div>
         <h3 className={styles.heading}>Notes</h3>
         <div className={styles.row4}>

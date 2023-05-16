@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import styles from "./Input.module.css";
 
-function InputNoIcon({ label, name, getValue}) {
+function Input({ label, name, getValue}) {
   
   const [value, setValue] = useState('')
   const handleChange = (e) => {
@@ -23,4 +23,4 @@ function InputNoIcon({ label, name, getValue}) {
     );
 }
 
-export default InputNoIcon;
+export default Input;
