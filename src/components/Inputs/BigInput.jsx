@@ -3,9 +3,12 @@ import styles from "./Input.module.css";
 
 function BigInput({ label, getValue }) {
   const [value, setValue] = useState();
+
   const handleChange = (e) => {
-    setValue(e.target.value);
-    getValue(value);
+    const inputValue = e.target.value;
+    setValue(inputValue);
+    const lastLetter = inputValue.charAt(inputValue.length - 1);
+    getValue(lastLetter);
   };
 
   return (
@@ -13,7 +16,6 @@ function BigInput({ label, getValue }) {
       <label className={styles.label} htmlFor="">
         {label}
       </label>
-
       <textarea
         className={styles.textarea}
         name=""

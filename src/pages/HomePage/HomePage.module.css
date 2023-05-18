@@ -73,10 +73,54 @@ input:focus {
     justify-content: space-evenly;
     align-items: center;
     top: 0;
-    position: absolute;
-    top: 45rem;
 }
 
+.paginationList {
+    display: flex;
+    list-style: none;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.paginationList li button {
+    margin: 2px;
+    border: none;
+    background-color: #fff;
+    color: #000;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 10px;
+    outline: none;
+    border-radius: 0.3rem;
+}
+
+.paginationList li button:hover {
+    color: #fff;
+    background-color: #BE6370;
+}
+
+.paginationList li.active button {
+    color: #fff;
+    background-color: #E28F1E;
+}
+
+.paginationList li.disabled span {
+    color: #aaa;
+    pointer-events: none;
+}
+
+.paginationList li.previous,
+.paginationList li.next {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.paginationList li.previous span,
+.paginationList li.next span {
+    font-size: 24px;
+    font-weight: bold;
+}
 .paginator {
     background: #fff;
 }
@@ -93,4 +137,36 @@ input:focus {
     border-radius: 0.75rem;
     background: #BE6370;
     text-decoration: none;
-}
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: 100ms ease-in;
+    }
+
+    .plus:hover{
+            background: #80303b;
+    }
+    
+    @media only screen and (max-width: 768px) {
+        .status {
+            width: 80%;
+            gap: 2rem;
+        }
+    
+        .container1 {
+            width: 80%;
+        }
+        
+           .inputWrapper {
+               width: 10rem;
+           }
+    }
+    
+    
+    @media only screen and (max-width: 468px) {
+        .status {
+            width: 90%;
+        }
+    
+        .container1 {
+            width: 85%;
+        }
+ }

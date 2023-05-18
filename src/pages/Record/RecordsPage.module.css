@@ -113,10 +113,26 @@
     justify-content: center;
     margin-bottom: 2rem;
     align-self: flex-end;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        transition: 100ms ease;
+    }
+    
+    .saveBtn:hover {
+        background: #5c3539;
 }
 
 .save {
     color: #fff;
     font-weight: 600;
     cursor: pointer;
+}
+
+.error{
+    color: red;
+    font-weight: 500;
+}
+@media only screen and (max-width: 768px) {
+    .navLine {
+            width: 20%;
+        }
 }

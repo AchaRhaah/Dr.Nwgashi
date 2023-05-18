@@ -16,15 +16,16 @@ function RecordPage() {
   const [sex, setSex] = useState("");
   const [phone, setPhone] = useState(0);
   const [email, setEmail] = useState("");
-  const [apptDate, setApptDate] = useState(0);
+  const [apptDate, setApptDate] = useState(Date.now());
   const [firstTime, setFirstTime] = useState("No");
-  const [reqDate, setReqDate] = useState(0);
+  const [reqDate, setReqDate] = useState(Date.now());
   const [apptStatus, setApptStatus] = useState("pending");
   const [apptTime, setApptTime] = useState("00:00");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [beforeAppt, setBeforeAppt] = useState("");
   const [afterAppt, setAfterAppt] = useState("");
+  const [errorMessage, setErrorMessage] = useState(false)
 
   const addAppointment = async () => {
     try {
@@ -53,21 +54,20 @@ function RecordPage() {
         "http://localhost:3001/record",
         requestOptions
       );
-      if (response.ok) {
-        // handle successful save
-        console.log("Appointment saved successfully");
+      if (response.status === 200) {
+        setErrorMessage(false)
+        alert("appointment created successfully");
       } else {
-        // handle error response
+        setErrorMessage(true);
+
         const error = await response.json();
-        console.log("error", error);
         throw new Error(error.message);
       }
     } catch (error) {
-      // handle network errors and other exceptions
       console.error("Error saving appointment:", error.message);
-      // display error message on the front end or handle it in some other way
     }
   };
+  console.log(email, phone, email, address, city);
 
   return (
     <div className={styles.pageContainer}>
@@ -87,7 +87,6 @@ function RecordPage() {
             name={"uniqueCode"}
             getValue={setUniqueCode}
           />
-          {console.log("status", apptStatus)}
           <Input label={"Name"} name={"name"} getValue={setName} />
           <Dropdown
             label={"Sex"}
@@ -150,6 +149,8 @@ function RecordPage() {
             getValue={setAfterAppt}
           />
         </div>
+        {errorMessage ? <p className={styles.error}>Fill in feilds correctly</p> : ""
+        }
         <div className={styles.saveBtn} onClick={addAppointment}>
           <p className={styles.save}>Save</p>
         </div>

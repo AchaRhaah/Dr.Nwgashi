@@ -9,7 +9,6 @@ function Dropdown({ label, data, getValue }) {
     const newSelectedOption = event.target[selectedIndex].value;
     setSelectedOption(newSelectedOption);
     getValue(newSelectedOption); // pass the selected option to getValue function
-    console.log("Selected option:", newSelectedOption);
   };
 
   return (
