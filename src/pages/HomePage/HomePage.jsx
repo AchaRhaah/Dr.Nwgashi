@@ -9,12 +9,16 @@ import styles from "./HomePage.module.css";
 function HomePage() {
   const [appt, setAppt] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(7);
+  const [itemsPerPage, setItemsPerPage] = useState(6);
   const [sort, setSort] = useState("");
+  var [passed, setPassed] = useState(0)
+  var [pending, setPending] = useState(0)
+  var [rescheduled, setRescheduled] = useState(0)
+  var [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     GetAppointments();
-  }, [sort]);
+  }, [sort, searchQuery]);
 
   function sortArrayByName(arr) {
     arr.sort((a, b) => {
@@ -67,15 +71,23 @@ function HomePage() {
       .then((res) => res.json())
       .then((data) => {
         let tempArr = data;
+        if (searchQuery) {
+          tempArr = tempArr.filter((appt) =>
+            appt.name.toLowerCase().includes(searchQuery.toLowerCase())
+          );
+        }
         if (sort === "nameInAlph") {
           tempArr = sortArrayByName(tempArr);
-        } else if (sort === "nameCodeInOrder") {
+        } else if (sort === "codeInOrder") {
           tempArr = codeInOrder(tempArr);
         } else if (sort === "ageInOrder") {
           tempArr = sortArrayByAge(tempArr);
         } else if (sort === "addrInAlph") {
           tempArr = sortArrayByAddress(tempArr);
         }
+        tempArr.map((item, index) => {
+          if(item.apptStatus === "Pending") setPending()
+        })
         setAppt(tempArr);
       })
       .catch((e) => console.error("Error", e));
@@ -103,7 +115,13 @@ function HomePage() {
           </p>
         </div>
         <div className={styles.inputWrapper}>
-          <input className={styles.search} placeholder="Search" type="text" />
+          <input
+            className={styles.search}  
+            type="text"
+            placeholder="Search a name"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />{" "}
           <FontAwesomeIcon
             className={styles.searchIcon}
             icon={faMagnifyingGlass}
@@ -127,7 +145,7 @@ function HomePage() {
           title="Passed"
           bgcolor={"#CFD6CF"}
           textColor={"#4E7A66"}
-          amount={5}
+          amount={pending}
         />
       </div>
       <Table tableData={currentItems} getSortCriteria={setSort} />

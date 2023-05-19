@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import styles from "./Table.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleUp, faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAngleUp,
+  faAngleDown,
+  faBars,
+} from "@fortawesome/free-solid-svg-icons";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import { Status } from "../index";
@@ -69,22 +73,22 @@ function Table({ tableData, getSortCriteria }) {
           <div className={`${styles.col_5} ${styles.tableHeaderContainer}`}>
             <p className={styles.tableHeaderText}>Phone</p>
             <div className={styles.iconContainer}>
-              <FontAwesomeIcon className={styles.icon} icon={faAngleUp} />
-              <FontAwesomeIcon className={styles.icon} icon={faAngleDown} />
             </div>
           </div>
           <div className={`${styles.col_6} ${styles.tableHeaderContainer}`}>
-            <p className={styles.tableHeaderText}>Status</p>
-            <div className={styles.iconContainer}>
-              <FontAwesomeIcon className={styles.icon} icon={faAngleUp} />
-              <FontAwesomeIcon className={styles.icon} icon={faAngleDown} />
+            <div>
+              <p className={styles.tableHeaderText}>Status</p>
+              <div className={`${styles.iconContainer} ${styles.inputFilter}`}>
+              </div>
             </div>
           </div>
         </li>
         {tableData.map((data, index) => {
           return (
             <li key={index} className={styles.table_row}>
-              <div className={`${styles.col} ${styles.col_1}`}>{data.name}</div>
+              <div className={`${styles.col} ${styles.col_1} ${styles.name}`}>
+                {data.name}
+              </div>
               <div className={`${styles.col} ${styles.col_2}`}>
                 {data.uniqueCode}
               </div>
@@ -96,13 +100,13 @@ function Table({ tableData, getSortCriteria }) {
                 {data.phone}
               </div>
               <div className={`${styles.col} ${styles.col_6}`}>
-                {data.apptStatus == "Rescheduled" ? (
+                {data.apptStatus === "Rescheduled" ? (
                   <Status
                     text="Rescheduled"
                     bgcolor="#FFF3E9"
                     textColor="#E2B756"
                   />
-                ) : data.apptStatus == "Pending" ? (
+                ) : data.apptStatus === "Pending" ? (
                   <Status
                     text="Pending"
                     bgcolor="#FCEFEF"
