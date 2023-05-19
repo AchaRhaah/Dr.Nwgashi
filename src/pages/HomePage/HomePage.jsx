@@ -67,7 +67,7 @@ function HomePage() {
   }
 
   const GetAppointments = () => {
-    fetch("http://localhost:3001/")
+    fetch("https://dr-ngwashi.onrender.com/")
       .then((res) => res.json())
       .then((data) => {
         let tempArr = data;
@@ -85,27 +85,51 @@ function HomePage() {
         } else if (sort === "addrInAlph") {
           tempArr = sortArrayByAddress(tempArr);
         }
-        tempArr.map((item, index) => {
-          if(item.apptStatus === "Pending") setPending()
-        })
         setAppt(tempArr);
+
+        let passedCount = 0;
+        let pendingCount = 0;
+        let rescheduledCount = 0;
+
+        data.forEach((appt) => {
+          if (appt.apptStatus === "Passed") {
+            passedCount++;
+          } else if (appt.apptStatus === "Pending") {
+            pendingCount++;
+          } else if (appt.apptStatus === "Rescheduled") {
+            rescheduledCount++;
+          }
+        });
+        setPassed(passedCount);
+        setPending(pendingCount);
+        setRescheduled(rescheduledCount);
       })
       .catch((e) => console.error("Error", e));
   };
 
   if (sort === "nameInAlph") {
     sortArrayByName(appt);
-    console.log(appt);
   }
+  console.log(
+    `missed ${pending} rescheduled ${rescheduled} passed: ${passed} `
+  );
 
-  // Logic for pagination
+  // const statusCount = (arr) => {
+  //   for (var i = 0; i < arr.length; i++){
+  //     if (arr[i].apptStatus == 'Rescheduled') setRescheduled(rescheduled + 1)
+  //     else if (arr[i].apptStatus == "Pending") setPending(pending + 1);
+  //     else if (arr[i].apptStatus == "Passed") setPassed(passed + 1);
+  //   }
+  // }
+
+  // statusCount(appt)
+  // // Logic for pagination
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = appt.slice(indexOfFirstItem, indexOfLastItem);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  console.log("sort", sort);
   return (
     <div className={styles.homePage}>
       <div className={styles.container1}>
@@ -116,7 +140,7 @@ function HomePage() {
         </div>
         <div className={styles.inputWrapper}>
           <input
-            className={styles.search}  
+            className={styles.search}
             type="text"
             placeholder="Search a name"
             value={searchQuery}
@@ -133,13 +157,13 @@ function HomePage() {
           textColor={"#D92B2E"}
           title="Missed"
           bgcolor={"#EECECF"}
-          amount={15}
+          amount={passed}
         />
         <StatusBox
           title="Rescheduled"
           textColor={"#E28F1E"}
           bgcolor={"#EEDAC1"}
-          amount={21}
+          amount={rescheduled}
         />
         <StatusBox
           title="Passed"

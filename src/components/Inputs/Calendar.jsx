@@ -9,7 +9,7 @@ function Calendar({ label, getDate }) {
   const handleDatePicked = (date) => {
     setStartDate(date)
     getDate(date)
-  }
+  } 
   return (
     <div className={styles.inputContainer}>
       <label className={styles.label} htmlFor="">

@@ -51,7 +51,7 @@ function RecordPage() {
         }),
       };
       const response = await fetch(
-        "http://localhost:3001/record",
+        "https://dr-ngwashi.onrender.com/record",
         requestOptions
       );
       if (response.status === 200) {
