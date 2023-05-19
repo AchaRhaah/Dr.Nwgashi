@@ -14,7 +14,7 @@ function HomePage() {
 
   useEffect(() => {
     GetAppointments();
-  }, []);
+  }, [sort]);
 
   function sortArrayByName(arr) {
     arr.sort((a, b) => {
@@ -65,12 +65,24 @@ function HomePage() {
   const GetAppointments = () => {
     fetch("http://localhost:3001/")
       .then((res) => res.json())
-      .then((data) => setAppt(data))
+      .then((data) => {
+        let tempArr = data;
+        if (sort === "nameInAlph") {
+          tempArr = sortArrayByName(tempArr);
+        } else if (sort === "nameCodeInOrder") {
+          tempArr = codeInOrder(tempArr);
+        } else if (sort === "ageInOrder") {
+          tempArr = sortArrayByAge(tempArr);
+        } else if (sort === "addrInAlph") {
+          tempArr = sortArrayByAddress(tempArr);
+        }
+        setAppt(tempArr);
+      })
       .catch((e) => console.error("Error", e));
   };
 
   if (sort === "nameInAlph") {
-    sortArrayByName(appt)
+    sortArrayByName(appt);
     console.log(appt);
   }
 

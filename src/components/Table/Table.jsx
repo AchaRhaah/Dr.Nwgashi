@@ -32,13 +32,10 @@ function Table({ tableData, getSortCriteria }) {
             <p className={styles.tableHeaderText}>Code</p>
             <Tippy content="Sort code in assending order">
               <div
-                onClick={() => setSortBy('codeInOrder')}
+                onClick={() => setSortBy("nameCodeInOrder")}
                 className={styles.iconContainer}
               >
-                <FontAwesomeIcon
-                  className={styles.icon}
-                  icon={faAngleUp}
-                />
+                <FontAwesomeIcon className={styles.icon} icon={faAngleUp} />
                 <FontAwesomeIcon className={styles.icon} icon={faAngleDown} />
               </div>
             </Tippy>
