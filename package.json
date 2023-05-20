@@ -1,5 +1,5 @@
 {
-  "homepage": "http://AchaRhaah.github.io/Dr.Nwgashi",
+  "homepage": "https://github.com/AchaRhaah/Dr.Nwgashi_front_end",
   "name": "dr_ngwashi",
   "version": "0.1.0",
   "private": true,
@@ -31,7 +31,7 @@
     "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
