@@ -15,6 +15,7 @@ function HomePage() {
   var [pending, setPending] = useState(0)
   var [rescheduled, setRescheduled] = useState(0)
   var [searchQuery, setSearchQuery] = useState("");
+  var [numOfPatients, setNumOfPatients] = useState(0)
 
   useEffect(() => {
     GetAppointments();
@@ -71,10 +72,13 @@ function HomePage() {
       .then((res) => res.json())
       .then((data) => {
         let tempArr = data;
+        setNumOfPatients(data.length);
         if (searchQuery) {
-          tempArr = tempArr.filter((appt) =>
-            appt.name.toLowerCase().includes(searchQuery.toLowerCase())
-          );
+          tempArr = tempArr.filter((appt) => {
+            return Object.values(appt).some((value) =>
+              String(value).toLowerCase().includes(searchQuery.toLowerCase())
+            );
+          });
         }
         if (sort === "nameInAlph") {
           tempArr = sortArrayByName(tempArr);
@@ -130,7 +134,7 @@ function HomePage() {
           <input
             className={styles.search}
             type="text"
-            placeholder="Search a name"
+            placeholder="Search any value"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />{" "}
@@ -164,6 +168,7 @@ function HomePage() {
       <div className={styles.pagination}>
         {appt.length > itemsPerPage ? (
           <ul className={styles.paginationList}>
+            {/* <h5>{ numOfPatients} patients</h5> */}
             <li className="previous">
               <button
                 disabled={currentPage === 1}

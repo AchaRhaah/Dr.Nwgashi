@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { Input, BigInput, Dropdown, Calendar, Time } from "../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function RecordPage() {
   const gender = ["Male", "Female"];
@@ -25,7 +27,7 @@ function RecordPage() {
   const [city, setCity] = useState("");
   const [beforeAppt, setBeforeAppt] = useState("");
   const [afterAppt, setAfterAppt] = useState("");
-  const [errorMessage, setErrorMessage] = useState(false)
+  const [errorMessage, setErrorMessage] = useState(false);
 
   const addAppointment = async () => {
     try {
@@ -55,8 +57,10 @@ function RecordPage() {
         requestOptions
       );
       if (response.status === 200) {
-        setErrorMessage(false)
-        alert("appointment created successfully");
+        setErrorMessage(false);
+        toast.success("Appointment created!", {
+          position: toast.POSITION.TOP_LEFT,
+        });
       } else {
         setErrorMessage(true);
 
@@ -70,6 +74,7 @@ function RecordPage() {
 
   return (
     <div className={styles.pageContainer}>
+      <ToastContainer />
       <div className={styles.topContainer}>
         <Link to="/" className={styles.icon}>
           <FontAwesomeIcon icon={faArrowLeft} />
@@ -148,8 +153,11 @@ function RecordPage() {
             getValue={setAfterAppt}
           />
         </div>
-        {errorMessage ? <p className={styles.error}>Fill in feilds correctly</p> : ""
-        }
+        {errorMessage ? (
+          <p className={styles.error}>Fill in feilds correctly</p>
+        ) : (
+          ""
+        )}
         <div className={styles.saveBtn} onClick={addAppointment}>
           <p className={styles.save}>Save</p>
         </div>

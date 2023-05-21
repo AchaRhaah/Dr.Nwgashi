@@ -5,8 +5,8 @@ import { useParams } from "react-router-dom";
 import { Input, BigInput, Dropdown, Calendar, Time } from "../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import Tippy from "@tippyjs/react";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function UpdateRecord() {
   let { id } = useParams();
   var [data, setData] = useState({});
@@ -50,6 +50,8 @@ function UpdateRecord() {
         setCity(data.city);
         setName(data.name);
         setSex(data.sex);
+        setAfterAppt(data.afterAppt);
+        setBeforeAppt(data.beforeAppt);
       })
       .catch((error) => console.error(error));
   };
@@ -79,7 +81,9 @@ function UpdateRecord() {
       .then((res) => {
         // console.log(res);
         if (res.ok) {
-          alert("Field updated successfully");
+          toast.success("Update successful!", {
+            position: toast.POSITION.TOP_LEFT,
+          });
         } else {
           alert("Update not successful");
         }
@@ -91,6 +95,7 @@ function UpdateRecord() {
 
   return (
     <div className={styles.pageContainer}>
+      <ToastContainer />
       <div className={styles.topContainer}>
         <Link to="/" className={styles.icon}>
           <FontAwesomeIcon icon={faArrowLeft} />
@@ -207,7 +212,7 @@ function UpdateRecord() {
         )}
         <div className={styles.saveBtn}>
           <p className={styles.save} onClick={handleSubmit}>
-            Save
+            Update
           </p>
         </div>
       </div>

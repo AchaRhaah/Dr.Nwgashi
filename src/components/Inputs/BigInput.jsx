@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Input.module.css";
 
 function BigInput({ label, getValue, value }) {
-  const [valuee, setValue] = useState();
+  const [value1, setValue1] = useState("");
+
+  useEffect(() => {
+    if (value !== undefined) {
+      setValue1(value);
+    }
+  }, [value]);
 
   const handleChange = (e) => {
     const inputValue = e.target.value;
-    setValue(inputValue);
+    setValue1(inputValue);
     const lastLetter = inputValue.charAt(inputValue.length - 1);
     getValue(lastLetter);
   };
@@ -23,7 +29,7 @@ function BigInput({ label, getValue, value }) {
         cols="20"
         rows="10"
         onChange={(e) => handleChange(e)}
-        value={value}
+        value={value1}
       ></textarea>
     </div>
   );
