@@ -67,7 +67,6 @@ function RecordPage() {
       console.error("Error saving appointment:", error.message);
     }
   };
-  console.log(email, phone, email, address, city);
 
   return (
     <div className={styles.pageContainer}>

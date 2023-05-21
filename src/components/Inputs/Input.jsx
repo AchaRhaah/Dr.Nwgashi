@@ -1,12 +1,17 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import styles from "./Input.module.css";
 
-function Input({ label, name, getValue }) {
-  const [value, setValue] = useState("");
+function Input({ label, name, getValue, value }) {
+  const [value1, setValue1] = useState("");
+   useEffect(() => {
+     if (value !== undefined) {
+       setValue1(value);
+     }
+   }, [value]);
 
   const handleChange = (e) => {
     const newValue = e.target.value;
-    setValue(newValue);
+    setValue1(newValue);
     getValue(newValue);
   };
 
@@ -20,6 +25,7 @@ function Input({ label, name, getValue }) {
         className={styles.input}
         type="text"
         onChange={(e) => handleChange(e)}
+        value={value1}
       />
     </div>
   );

@@ -110,19 +110,7 @@ function HomePage() {
   if (sort === "nameInAlph") {
     sortArrayByName(appt);
   }
-  console.log(
-    `missed ${pending} rescheduled ${rescheduled} passed: ${passed} `
-  );
 
-  // const statusCount = (arr) => {
-  //   for (var i = 0; i < arr.length; i++){
-  //     if (arr[i].apptStatus == 'Rescheduled') setRescheduled(rescheduled + 1)
-  //     else if (arr[i].apptStatus == "Pending") setPending(pending + 1);
-  //     else if (arr[i].apptStatus == "Passed") setPassed(passed + 1);
-  //   }
-  // }
-
-  // statusCount(appt)
   // // Logic for pagination
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;

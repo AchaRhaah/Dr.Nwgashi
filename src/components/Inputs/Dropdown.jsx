@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Input.module.css";
 
-function Dropdown({ label, data, getValue }) {
-  const [selectedOption, setSelectedOption] = useState("");
+function Dropdown({ label, data, getValue, value }) {
+  const [selectedOption, setSelectedOption] = useState('');
+   useEffect(() => {
+     if (value !== undefined) {
+       setSelectedOption(value);
+     }
+   }, [value]);
 
   const handleChange = (event) => {
     const selectedIndex = event.target.selectedIndex;

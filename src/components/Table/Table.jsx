@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Table.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router-dom";
 import {
   faAngleUp,
   faAngleDown,
@@ -11,6 +12,8 @@ import "tippy.js/dist/tippy.css";
 import { Status } from "../index";
 
 function Table({ tableData, getSortCriteria }) {
+  const navigate = useNavigate();
+
   const [sortBy, setSortBy] = useState("");
   getSortCriteria(sortBy);
 
@@ -72,20 +75,24 @@ function Table({ tableData, getSortCriteria }) {
           </div>
           <div className={`${styles.col_5} ${styles.tableHeaderContainer}`}>
             <p className={styles.tableHeaderText}>Phone</p>
-            <div className={styles.iconContainer}>
-            </div>
+            <div className={styles.iconContainer}></div>
           </div>
           <div className={`${styles.col_6} ${styles.tableHeaderContainer}`}>
             <div>
               <p className={styles.tableHeaderText}>Status</p>
-              <div className={`${styles.iconContainer} ${styles.inputFilter}`}>
-              </div>
+              <div
+                className={`${styles.iconContainer} ${styles.inputFilter}`}
+              ></div>
             </div>
           </div>
         </li>
         {tableData.map((data, index) => {
           return (
-            <li key={index} className={styles.table_row}>
+            <li
+              key={index}
+              onClick={() => navigate(`/update_records/${data._id}`)}
+              className={styles.table_row}
+            >
               <div className={`${styles.col} ${styles.col_1} ${styles.name}`}>
                 {data.name}
               </div>

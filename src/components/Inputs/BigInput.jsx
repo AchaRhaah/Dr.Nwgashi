@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styles from "./Input.module.css";
 
-function BigInput({ label, getValue }) {
-  const [value, setValue] = useState();
+function BigInput({ label, getValue, value }) {
+  const [valuee, setValue] = useState();
 
   const handleChange = (e) => {
     const inputValue = e.target.value;
@@ -23,6 +23,7 @@ function BigInput({ label, getValue }) {
         cols="20"
         rows="10"
         onChange={(e) => handleChange(e)}
+        value={value}
       ></textarea>
     </div>
   );
