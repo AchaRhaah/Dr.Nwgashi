@@ -97,7 +97,7 @@ function UpdateRecord() {
     <div className={styles.pageContainer}>
       <ToastContainer />
       <div className={styles.topContainer}>
-        <Link to="/" className={styles.icon}>
+        <Link to="/dashboard" className={styles.icon}>
           <FontAwesomeIcon icon={faArrowLeft} />
         </Link>
         <h2>Update Record</h2>

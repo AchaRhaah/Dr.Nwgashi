@@ -14,7 +14,6 @@ function Input({ label, name, getValue, value }) {
     setValue1(newValue);
     getValue(newValue);
   };
-
   return (
     <div className={styles.inputContainer}>
       <label className={styles.label} htmlFor="">
