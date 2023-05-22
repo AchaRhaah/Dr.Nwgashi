@@ -12,7 +12,7 @@ function HomePage() {
   const [itemsPerPage, setItemsPerPage] = useState(6);
   const [sort, setSort] = useState("");
   var [passed, setPassed] = useState(0)
-  var [pending, setPending] = useState(0)
+  var [missed, setMissed] = useState(0)
   var [rescheduled, setRescheduled] = useState(0)
   var [searchQuery, setSearchQuery] = useState("");
   var [numOfPatients, setNumOfPatients] = useState(0)
@@ -31,6 +31,7 @@ function HomePage() {
         return 0;
       }
     });
+    setAppt(arr)
     return arr;
   }
 
@@ -44,6 +45,7 @@ function HomePage() {
         return 0;
       }
     });
+    setAppt(arr);
     return arr;
   }
 
@@ -51,6 +53,8 @@ function HomePage() {
     arr.sort((a, b) => {
       return a.age - b.age;
     });
+    setAppt(arr)
+
     return arr;
   }
 
@@ -72,6 +76,7 @@ function HomePage() {
       .then((res) => res.json())
       .then((data) => {
         let tempArr = data;
+        console.log("*************",tempArr)
         setNumOfPatients(data.length);
         if (searchQuery) {
           tempArr = tempArr.filter((appt) => {
@@ -90,22 +95,23 @@ function HomePage() {
           tempArr = sortArrayByAddress(tempArr);
         }
         setAppt(tempArr);
+        console.log("",appt)
 
         let passedCount = 0;
-        let pendingCount = 0;
+        let missed = 0;
         let rescheduledCount = 0;
 
         data.forEach((appt) => {
           if (appt.apptStatus === "Passed") {
             passedCount++;
-          } else if (appt.apptStatus === "Pending") {
-            pendingCount++;
+          } else if (appt.apptStatus === "Missed") {
+            missed++;
           } else if (appt.apptStatus === "Rescheduled") {
             rescheduledCount++;
           }
         });
         setPassed(passedCount);
-        setPending(pendingCount);
+        setMissed(missed);
         setRescheduled(rescheduledCount);
       })
       .catch((e) => console.error("Error", e));
@@ -161,7 +167,7 @@ function HomePage() {
           title="Passed"
           bgcolor={"#CFD6CF"}
           textColor={"#4E7A66"}
-          amount={pending}
+          amount={missed}
         />
       </div>
       <Table tableData={currentItems} getSortCriteria={setSort} />

@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 import {
   faAngleUp,
   faAngleDown,
-  faBars,
+  faPerson,
+  faPersonDress,
 } from "@fortawesome/free-solid-svg-icons";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
@@ -60,6 +61,14 @@ function Table({ tableData, getSortCriteria }) {
               </div>
             </Tippy>
           </div>
+          <div className={`${styles.col_3} ${styles.tableHeaderContainer}`}>
+            <p className={styles.tableHeaderText}>gender</p>
+              <div
+                className={styles.iconContainer}
+              >
+              
+              </div>
+          </div>
           {/* Sort by address */}
           <div className={`${styles.col_4} ${styles.tableHeaderContainer}`}>
             <p className={styles.tableHeaderText}>Address</p>
@@ -100,6 +109,26 @@ function Table({ tableData, getSortCriteria }) {
                 {data.uniqueCode}
               </div>
               <div className={`${styles.col} ${styles.col_3}`}>{data.age}</div>
+              <div className={`${styles.col} ${styles.col_3}`}>
+                {data.sex === "Female" ? (
+                  <div>
+                    <FontAwesomeIcon
+                      className={styles.gender}
+                      icon={faPersonDress}
+                    />
+                    {data.sex}
+                  </div>
+                ) : (
+                  <div>
+                    {" "}
+                    <FontAwesomeIcon
+                      className={styles.gender}
+                      icon={faPerson}
+                    />
+                    {data.sex}
+                  </div>
+                )}
+              </div>
               <div className={`${styles.col} ${styles.col_4}`}>
                 {data.address}
               </div>
@@ -116,9 +145,11 @@ function Table({ tableData, getSortCriteria }) {
                 ) : data.apptStatus === "Pending" ? (
                   <Status
                     text="Pending"
-                    bgcolor="#FCEFEF"
-                    textColor="#D25856"
+                    bgcolor="#dbe6ea"
+                    textColor="#4e707d"
                   />
+                ) : data.apptStatus === "Missed" ? (
+                  <Status text="Missed" bgcolor="#FCEFEF" textColor="#D25856" />
                 ) : (
                   <Status text="Passed" bgcolor="#EDF2F1" textColor="#6F8E7C" />
                 )}

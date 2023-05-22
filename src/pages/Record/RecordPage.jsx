@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 function RecordPage() {
   const gender = ["Male", "Female"];
-  const status = ["Pending", "Rescheduled", "Passed"];
+  const status = ["Pending", "Rescheduled", "Passed", "Missed"];
   const firstTimeOption = ["Yes", "No"];
   const [time, setTime] = useState("10:00");
   const [age, setAge] = useState(0);

@@ -107,6 +107,10 @@
 .col_6 {
     width: 14%;
 }
+
+.gender{
+    font-size: 1.5rem;
+}
 @media only screen and (max-width: 768px) {
     .col_2 {
         display: none;
@@ -149,7 +153,7 @@
     }
 
     .tableContainer {
-        width: 92%;
+        width: 97%;
         margin: 0 auto;
     }
 }

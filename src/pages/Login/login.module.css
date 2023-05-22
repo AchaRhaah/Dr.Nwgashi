@@ -50,10 +50,27 @@
     transition: 100ms ease-in;
 }
 
+.error{
+    color: rgb(212, 38, 38);
+    
+}
+
 .prompt{
     margin-bottom: 0.2rem;
 }
 
 .signin:hover{
     background: #e09091;
+}
+@media only screen and (max-width: 900px) {
+    .form {
+        width: 55%;
+    }
+}
+
+
+@media only screen and (max-width: 500px) {
+    .form {
+        width: 85%;
+    }
 }
