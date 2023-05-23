@@ -1,6 +1,7 @@
 import "./App.css";
 import { Navbar } from "./components";
-import { HomePage, RecordPage, UpdateRecords, Login, SignUp} from "./pages";
+import { HomePage, RecordPage, UpdateRecords, SignUp } from "./pages";
+import Login from "./pages/Login/login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {

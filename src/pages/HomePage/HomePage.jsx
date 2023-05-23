@@ -83,7 +83,7 @@ function HomePage() {
             return Object.values(appt).some((value) =>
               String(value).toLowerCase().includes(searchQuery.toLowerCase())
             );
-          });
+          }); 
         }
         if (sort === "nameInAlph") {
           tempArr = sortArrayByName(tempArr);

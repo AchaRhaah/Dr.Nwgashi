@@ -73,7 +73,7 @@ function Login() {
             onChange={handlePassword}
           />
         </div>
-        <p>{error}</p>
+        <p className={styles.error}>{error}</p>
         <button className={styles.signin} type="submit">
           Sign In
         </button>
