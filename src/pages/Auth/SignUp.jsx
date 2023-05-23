@@ -92,8 +92,8 @@ function Signup() {
             <option value="admin" selected={selectedRole === "admin"}>
               Admin
             </option>
-            <option value="user" selected={selectedRole === "user"}>
-              User
+            <option value="secretary" selected={selectedRole === "secretary"}>
+              secretary
             </option>
           </select>
         </div>
