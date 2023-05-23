@@ -80,6 +80,7 @@
     align-items: flex-start;
     margin-left: 1.4rem;
     font-size: 1em;
+    cursor: pointer;
     /* border: 1px solid; */
     /* justify-content: center; */
 }
