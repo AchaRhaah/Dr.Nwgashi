@@ -17,12 +17,12 @@ function Signup() {
      event.preventDefault();
 
      try {
-       const response = await fetch("https://dr-ngwashi.onrender/sign_up", {
+       const response = await fetch("http://localhost:3001/sign_up", {
          method: "POST",
          headers: {
            "Content-Type": "application/json",
          },
-         body: JSON.stringify({
+         body: JSON.stringify({    
            name,
            email,
            password,
