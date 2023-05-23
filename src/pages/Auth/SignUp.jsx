@@ -13,37 +13,33 @@ function Signup() {
   const navigate = useNavigate();
   const [selectedRole, setSelectedRole] = useState("");
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+   const handleSubmit = async (event) => {
+     event.preventDefault();
 
-    try {
-      const response = await fetch("https://dr-ngwashi.onrender.com/sign_up", {
-        method: "POST",
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("authToken"),
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          password,
-        }),
-      });
+     try {
+       const response = await fetch("https://dr-ngwashi.onrender/sign_up", {
+         method: "POST",
+         headers: {
+           "Content-Type": "application/json",
+         },
+         body: JSON.stringify({
+           name,
+           email,
+           password,
+         }),
+       });
 
-      if (!response.ok) {
-        const errorResponse = await response.json();
-        // get the error response from server
-
-        throw new Error(errorResponse.message);
-      }
-
-      toast.success("Account created successfully");
-      navigate("/dashboard");
-    } catch (error) {
-      setError(error.message);
-      console.error(error);
-    }
-  };
+       if (!response.ok) {
+         const errorResponse = await response.json(); // get the error response from server
+         throw new Error(errorResponse.message);
+       }
+       toast.success("Account created successfully");
+       navigate("/dashboard");
+     } catch (error) {
+       setError(error.message);
+       console.error(error);
+     }
+   };
 
   const handleChange = (event) => {
     const selectedIndex = event.target.selectedIndex;
@@ -63,7 +59,6 @@ function Signup() {
           </label>
           <input
             type="text"
-            placeholder="Name"
             className={`${styles.text} ${styles.input}`}
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -109,7 +104,8 @@ function Signup() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type="submit" className={styles.signin}>
+        <p className={styles.error}>{error}</p>
+        <button type="submit" onClick={handleSubmit} className={styles.signin}>
           Add user
         </button>
       </form>

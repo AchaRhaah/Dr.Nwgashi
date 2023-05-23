@@ -31,7 +31,6 @@ function Login() {
 
       navigate("/dashboard");
 
-      toast.success("Login successful!");
     } catch (error) {
       setError(error.message);
     }
