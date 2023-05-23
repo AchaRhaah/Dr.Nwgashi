@@ -3,6 +3,7 @@ import { StatusBox, Table } from "../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import {Navbar} from "../../components";
 
 import styles from "./HomePage.module.css";
 
@@ -72,18 +73,21 @@ function HomePage() {
   }
 
   const GetAppointments = () => {
-    fetch("https://dr-ngwashi.onrender.com/")
+    fetch("https://dr-ngwashi.onrender.com/", {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("authToken"),
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         let tempArr = data;
-        console.log("*************",tempArr)
         setNumOfPatients(data.length);
         if (searchQuery) {
           tempArr = tempArr.filter((appt) => {
             return Object.values(appt).some((value) =>
               String(value).toLowerCase().includes(searchQuery.toLowerCase())
             );
-          }); 
+          });
         }
         if (sort === "nameInAlph") {
           tempArr = sortArrayByName(tempArr);
@@ -95,7 +99,7 @@ function HomePage() {
           tempArr = sortArrayByAddress(tempArr);
         }
         setAppt(tempArr);
-        console.log("",appt)
+        console.log("", appt);
 
         let passedCount = 0;
         let missed = 0;
@@ -130,6 +134,7 @@ function HomePage() {
 
   return (
     <div className={styles.homePage}>
+      <Navbar icon={true} />
       <div className={styles.container1}>
         <div>
           <p className={styles.appointment}>

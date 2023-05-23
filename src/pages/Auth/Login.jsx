@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./auth.module.css";
+import { Navbar } from "../../components";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -14,11 +15,11 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      const response = await fetch("http://localhost:3001/signin", {
+      const response = await fetch("https://dr-ngwashi.onrender.com/sign_in", {
         method: "POST",
         headers: {
+          Authorization: "Bearer " + localStorage.getItem("authToken"),
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, password }),
@@ -37,7 +38,8 @@ function Login() {
   };
 
   return (
-    <div className={styles.container}>
+      <div className={styles.container}>
+          <Navbar icon={false} />
       <ToastContainer />
       <form onSubmit={handleSubmit} className={styles.form}>
         <h3 className={`${styles.text} ${styles.heading}`}>Welcome Back!</h3>

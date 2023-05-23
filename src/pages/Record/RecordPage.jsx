@@ -3,6 +3,7 @@ import styles from "./RecordsPage.module.css";
 import { Link } from "react-router-dom";
 import { Input, BigInput, Dropdown, Calendar, Time } from "../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {Navbar} from "../../components";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -52,10 +53,11 @@ function RecordPage() {
           afterAppt: afterAppt,
         }),
       };
-      const response = await fetch(
-        "https://dr-ngwashi.onrender.com/record",
-        requestOptions
-      );
+      const response = await fetch("https://dr-ngwashi.onrender.com/record", {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("authToken"),
+        },
+      });
       if (response.status === 200) {
         setErrorMessage(false);
         toast.success("Appointment created!", {
@@ -74,6 +76,7 @@ function RecordPage() {
 
   return (
     <div className={styles.pageContainer}>
+      <Navbar icon={true} />
       <ToastContainer />
       <div className={styles.topContainer}>
         <Link to="/dashboard" className={styles.icon}>

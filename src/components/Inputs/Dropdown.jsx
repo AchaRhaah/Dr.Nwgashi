@@ -13,7 +13,7 @@ function Dropdown({ label, data, getValue, value }) {
     const selectedIndex = event.target.selectedIndex;
     const newSelectedOption = event.target[selectedIndex].value;
     setSelectedOption(newSelectedOption);
-    getValue(newSelectedOption); // pass the selected option to getValue function
+    getValue(newSelectedOption); 
   };
 
   return (
@@ -24,8 +24,6 @@ function Dropdown({ label, data, getValue, value }) {
         onChange={handleChange}
         value={selectedOption}
       >
-        {/* use the data array to generate the options */}
-        <option value=""></option>
         {data.map((val, i) => (
           <option key={i} value={val}>
             {val}

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import styles from "../Record/RecordsPage.module.css";
+import styles from "./RecordsPage.module.css";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { Input, BigInput, Dropdown, Calendar, Time } from "../../components";
+import { Input, BigInput, Dropdown, Calendar } from "../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Navbar } from "../../components";
 function UpdateRecord() {
   let { id } = useParams();
   var [data, setData] = useState({});
@@ -33,7 +34,11 @@ function UpdateRecord() {
   const [errorMessage, setErrorMessage] = useState(false);
 
   const fetchData = () => {
-    fetch(`http://localhost:3001/${id}`)
+    fetch(`https://dr-ngwashi.onrender.com/${id}`, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("authToken"),
+      },
+    })
       .then((response) => response.json())
       .then((data) => {
         setData(data);
@@ -95,6 +100,7 @@ function UpdateRecord() {
 
   return (
     <div className={styles.pageContainer}>
+      <Navbar icon={true} />
       <ToastContainer />
       <div className={styles.topContainer}>
         <Link to="/dashboard" className={styles.icon}>
